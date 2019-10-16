@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Manejando el DOM</title>
+    <style>
+    body{
+        font-family: sans-serif;
+        margin-bottom: 40px;
+    }
+    .content{
+        margin: 0 auto;
+        max-width: 800px;
+    }
+    .avisoCookies{
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        padding: 15px;
+        background-color: darkred;
+        color: white;
+        width: 100vw;
+        text-align: center;
+    }
+    .avisoCookies span{
+        background-color: darkorchid;
+        color: whitesmoke;
+        display: inline-block;
+        padding: 10px;
+        border-radius: 6px;
+        margin-left: 15px;
+        cursor: pointer;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <h1>Ejemplo de aviso de cookies</h1>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorem quam, officiis debitis excepturi voluptatem
+            molestiae, qui impedit consectetur quas maxime rem quidem recusandae, quibusdam quasi! Exercitationem nihil
+            dolorum rerum enim!</p>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorem quam, officiis debitis excepturi voluptatem
+            molestiae, qui impedit consectetur quas maxime rem quidem recusandae, quibusdam quasi! Exercitationem nihil
+            dolorum rerum enim!</p>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorem quam, officiis debitis excepturi voluptatem
+            molestiae, qui impedit consectetur quas maxime rem quidem recusandae, quibusdam quasi! Exercitationem nihil
+            dolorum rerum enim!</p>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorem quam, officiis debitis excepturi voluptatem
+            molestiae, qui impedit consectetur quas maxime rem quidem recusandae, quibusdam quasi! Exercitationem nihil
+            dolorum rerum enim!</p>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorem quam, officiis debitis excepturi voluptatem
+            molestiae, qui impedit consectetur quas maxime rem quidem recusandae, quibusdam quasi! Exercitationem nihil
+            dolorum rerum enim!</p>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorem quam, officiis debitis excepturi voluptatem
+            molestiae, qui impedit consectetur quas maxime rem quidem recusandae, quibusdam quasi! Exercitationem nihil
+            dolorum rerum enim!</p>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorem quam, officiis debitis excepturi voluptatem
+            molestiae, qui impedit consectetur quas maxime rem quidem recusandae, quibusdam quasi! Exercitationem nihil
+            dolorum rerum enim!</p>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorem quam, officiis debitis excepturi voluptatem
+            molestiae, qui impedit consectetur quas maxime rem quidem recusandae, quibusdam quasi! Exercitationem nihil
+            dolorum rerum enim!</p>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorem quam, officiis debitis excepturi voluptatem
+            molestiae, qui impedit consectetur quas maxime rem quidem recusandae, quibusdam quasi! Exercitationem nihil
+            dolorum rerum enim!</p>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorem quam, officiis debitis excepturi voluptatem
+            molestiae, qui impedit consectetur quas maxime rem quidem recusandae, quibusdam quasi! Exercitationem nihil
+            dolorum rerum enim!</p>
+    </div>
+    <script>
+        // no sirve ¿?
+        document.addEventListener('DOMContentLoader', launchCookieAdvisor)
+        function launchCookieAdvisor() {
+            // createElement crea elementos en la pagina en medio de su ejecucion
+            var capaCookies = document.createElement('div')
+            capaCookies.innerHTML = '<p>Tienes que aceptar las cookies<span id="botonaceptar">Aceptar</span></p>'
+            capaCookies.classList.add('avisoCookies')
+            var todosLosSpan = capaCookies.getElementsByTagName('span')
+            todosLosSpan.item(0).addEventListener('click', function () {
+                capaCookies.remove()
+                // esto tambien elimina el elemento
+                capaCookies.parentElement.removeChild(capaCookies)
+                // tambien se pueden eliminar elementos hermanos
+                capaCookies.parentElement.getElementsByTagName('div').item(0).remove()
+                // appenChild crea el elemento al final
+                document.body.appendChild(capaCookies)
+            })
+        }
+    </script>
+</body>
+
+</html>

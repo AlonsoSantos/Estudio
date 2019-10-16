@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Manejando el DOM</title>
+    <style>
+        li {
+            padding: 4px;
+        }
+
+        .item {
+            background-color: gray;
+        }
+
+        .itemGrande {
+            font-size: 1.4em;
+            font-family: sans-serif;
+            text-shadow: 2px 2px darkred;
+            font-weight: bold;
+            padding: 10px;
+            margin: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <p id="parrafo1">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat commodi minus, quis ad iusto
+        corporis eaque
+        asperiores dolorum debitis alias, at enim ullam? Nulla exercitationem fugit minus, accusamus dignissimos iste.
+    </p>
+    <p class="item">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat commodi minus, quis ad iusto
+        corporis eaque
+        asperiores dolorum debitis alias, at enim ullam? Nulla exercitationem fugit minus, accusamus dignissimos iste.
+    </p>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat commodi minus, quis ad iusto corporis eaque
+        asperiores dolorum debitis alias, at enim ullam? Nulla exercitationem fugit minus, accusamus dignissimos iste.
+    </p>
+    <ul>
+        <li class="item">Item 1</li>
+        <li>Item 2</li>
+        <li class="item">Item 3</li>
+        <li class="item">Item 4</li>
+    </ul>
+    <button id="cambiarClase">Cambia elementos con la clase item</button>
+    <button id="cambiarLi">Cambia todos los elementos li</button>
+    <button id="verParrafos">Ver párrafos</button>
+    <button id="anadirParafo">Añadir un párrafo</button>
+    <script>
+        // no sirve¿?
+        document.addEventListener('DOMContentLoaded', inicializacion)
+        function inicializacion() {
+            var cambiaClaseButton = document.getElementById('cambiarClase')
+            cambiaClaseButton.addEventListener('click', cambiaEstilosClase)
+
+            var cambiaLiButton = document.getElementById('cambiarLi')
+            cambiaLiButton.addEventListener('click', cambiaEstilosLi)
+        }
+        function cambiaEstilosClase() {
+            var elementos = document.getElementsByClassName('item')
+            console.log(elementos)
+            console.log(elementos.length)
+            for (let i = 0; i < elementos.length; i++) {
+                console.log(elementos.item(i)) // esto muestra cada elemento  
+                elementos.item(i).style.color = 'blue'              
+            }
+        }
+        function cambiaEstilosLi() {
+            var liElements = document.getElementsByTagName('li')
+            console.log(liElements)
+            for (let i = 0; i < liElements.length; i++) {
+                console.log('Item: ',liElements.item(i));
+                liElements.item(i).classList.add('itemGrande')
+                // classList permite el acceso a una serie de opciones para manipular las clases de los elementos
+            }
+        }
+    </script>
+</body>
+</html>

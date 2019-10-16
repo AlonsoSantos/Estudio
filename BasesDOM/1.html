@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manejando el DOM</title>
+</head>
+<body>
+    <form action="post.php" id='f' name="elformulario">
+        <label form="campo" id='etiqCampo'>Campo de texto:</label>
+        <input type="text" name="campo" size="40" id='c1'>
+    </form>
+    <script>
+        console.log(document.forms[0].action)
+    document.forms.elformulario.campo.value = 'Hola a todos en el campo 2!!!'
+    document.getElementById('etiqCampo').addEventListener('click',cambiaFoco)
+    // el keyup es el evento de soltar una tecla
+    // el keydown es el evento de presionar una tecla
+    function cambiaFoco(){
+        document.forms.elformulario.campo.focus()
+    }
+    document.getElementById('c1').addEventListener('keyup',function(){
+        // this me permite acceder al elemento del que se esta manejando, en este caso es 'c1'
+        console.log('Lo que hay escrito es: ',document.forms.elformulario.campo.value)
+        // puedo hacerlo mejor haciendo asi y es lo mismo
+        console.log('Lo que hay escrito es: ',this.value)
+    })
+    // si inspecciono un elemento de una pagina y selecciono uno solo, puedo usar $0.XXXXX que muestra todas las opciones disponibles para manejar el elemento
+    </script>
+</body>
+</html>
