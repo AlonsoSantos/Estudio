@@ -7,9 +7,24 @@
 </head>
 
 <body>
+    <input type="text" id="bienvenida">
+    <div>
+        <input type="text" id="input1">
+        <input type="text" id="input2">
+    </div>
     <script>
-        for (var i = 0; i < 3; i++) {
-            alert('Hola Alonso '+i)
+        // Punto 1
+        document.getElementById('bienvenida').value = 'Bienvenido a esta prueba'
+        // Punto 2
+        document.addEventListener('DOMContentLoaded', inicializar)
+        function inicializar() {
+            document.getElementById('input1').value = 'uno'
+            document.getElementById('input2').value = 'dos'
+        }
+        // Punto 3
+        var paises = ['Colombia', 'España', 'Japon', 'Estados Unidos']
+        for (var i = 0; i < paises.length; i++) {
+            alert('Mi país es '+paises[i])
         }
     </script>
 </body>
