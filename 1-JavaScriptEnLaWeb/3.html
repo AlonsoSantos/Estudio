@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <title>Document</title>
+   <script>
+      function cambiaEstilo(){
+         document.getElementById('ano').style.color = 'violet'
+         document.getElementById('ano').style.fontSize = '2em'
+      }
+      function inicializar(){
+         document.getElementById('parrafo1').style.color = 'darkred'
+      }
+      function inicializarFecha(){
+         // getFullYear sirve para decir el año completo de la fecha que se le de
+         var Fecha = new Date().getFullYear()
+         document.getElementById('ano').value = Fecha
+         document.getElementById('ano').addEventListener('click',cambiaEstilo)
+      }
+      // si se coloca el script en el head se debe colocar un addEventListener de tipo cargar 'load' para que primero cargue la pagina y luego siga con el resto de codigo JS
+      window.addEventListener('load',inicializar)
+      document.addEventListener('DOMContentLoaded',inicializarFecha)
+      // 'load' ejecuta la funcion cuando la pagina haya cargado con imagenes y todo
+      // 'DOMContentLoaded' se ejecuta cuando los elementos escritos en el body ya se han cargado (usa los scripts)
+   </script>
+</head>
+
+<body>
+   <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rerum harum placeat pariatur inventore, voluptatibus
+      nobis suscipit, natus aspernatur mollitia error aliquid minus veniam qui enim velit, perspiciatis commodi fugit
+      consectetur.</p>
+   <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rerum harum placeat pariatur inventore, voluptatibus
+      nobis suscipit, natus aspernatur mollitia error aliquid minus veniam qui enim velit, perspiciatis commodi fugit
+      consectetur.</p>
+   <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rerum harum placeat pariatur inventore, voluptatibus
+      nobis suscipit, natus aspernatur mollitia error aliquid minus veniam qui enim velit, perspiciatis commodi fugit
+      consectetur.</p>
+   <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rerum harum placeat pariatur inventore, voluptatibus
+      nobis suscipit, natus aspernatur mollitia error aliquid minus veniam qui enim velit, perspiciatis commodi fugit
+      consectetur.</p>
+   <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rerum harum placeat pariatur inventore, voluptatibus
+      nobis suscipit, natus aspernatur mollitia error aliquid minus veniam qui enim velit, perspiciatis commodi fugit
+      consectetur.</p>
+      Año: <input type="text" id="ano">
+</body>
+
+</html>
