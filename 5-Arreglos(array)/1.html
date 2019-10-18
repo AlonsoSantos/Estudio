@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var carros = []
+        // Array.isArray ayuda a verificar si una variable es un arreglo o no
+        // console.log(Array.isArray(carros));
+        // .push() sirve para agregar datos a un arreglo
+        carros.push({ nombre: 'Mazda', modelo: '2012', puntos: 3 })
+        carros.push({ nombre: 'Cevrolet', modelo: '2018', puntos: 10 })
+        carros.push({ nombre: 'Toyota', modelo: '2015', puntos: 9 })
+        carros.push({ nombre: 'Mercedes', modelo: '2015', puntos: 9 })
+        // console.log(carros);
+
+        // // efectos secundarios
+        // var mazda = carros[0]
+        // console.log(mazda);
+        // mazda.nombre = 'Pato'
+        // // esta linqueada y si por error modifico una los datos originales tambien
+        // console.log(mazda);
+
+        ////// forma correcta
+        // Object.assign(donde guardar, datos a guardar) sirve para clonar los datos en otro objeto
+        mazda = Object.assign({}, carros[0])
+        mazda.nombre = 'Pato'
+        // console.log(mazda)
+        // console.log(carros)
+        // otra forma de hacer un ciclo
+        carros.forEach(function (carro) {
+            // console.log(carro.nombre);
+        })
+        // map necesita retornar para hacer el log por fuera, sirve para recorrer el valor que se coloque y guardarla en un array aparte
+        var nombreCarros = carros.map(function (carro) {
+            // console.log(carro.nombre);
+            return carro.nombre
+        })
+        // console.log(nombreCarros);
+
+        // borrar
+        function borrarCarro(nombre) {
+            var posicionCarro = carros
+                .map(function (carro) {
+                    return carro.nombre
+                })
+                // indexOf(objeto) sirve para decir en que posicion del array esta el dato
+                .indexOf(nombre)
+            if (posicionCarro > -1) {
+                // .splice(la posicion de donde quiero borrar el dato,la cantidad de datos en adelante que quiero borrar) sirve para borrar un dato en un array
+                carros.splice(posicionCarro, 1)
+            }
+        }
+        borrarCarro('Toyota')
+        // console.log(carros)
+
+        // actualizar
+        function actualizar(nombreA, nombreB) {
+            carros
+                .map(function (carro) {
+                    if (carro.nombre === nombreA) {
+                        carro.nombre = nombreB
+                    }
+                    return carro
+                })
+        }
+        actualizar('Mazda','Ferrari')
+        // console.log(carros)
+
+        // .filter() sirve para filtrar datos que se tenga en un array y los guarda en un array nuevo
+        var mayor2013 = carros.filter(function (carro){
+            return carro.modelo > 2013
+        })
+        console.log(mayor2013)
+        // .some() sirve para buscar un dato entre la cantidad de datos, retorna true o false
+        var alguno = carros.some(function(carro){
+            return carro.nombre === 'Ferrari'
+        })
+        console.log(alguno)
+        // .every() sirve para verificar que todos los datos cumplan con la condicion que se coloque, retorna true o false
+        var cadauno = carros.every(function(carro){
+            return carro.puntos > 5
+        })
+        console.log(cadauno)
+        // .sort() sirve para ordenar los datos que se guardan en un array nuevo
+        var ordenar = carros.sort(function(carro1,carro2){
+            return carro1.nombre > carro2.nombre
+        })
+        console.log(ordenar)
+        
+        // mezclar
+        var puntos = carros
+        // el array nuevo solo tiene los datos de los puntos
+        .map(function(carro){
+            return carro.puntos
+        })
+        // el array se ordena del menor al mayor
+        .sort(function(punto1,punto2){
+            return punto1 - punto2
+        })
+        // manda nuevo array con los puntos mayores a 6
+        .filter(function(punto){
+            return punto > 6
+        })
+        console.log(puntos);
+    </script>
+</body>
+
+</html>

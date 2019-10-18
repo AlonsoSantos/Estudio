@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var persona = {
+            nombre: 'Alonso',
+            pasos: 1,
+            hablar: function () {
+                // this llama a lo que se esta usando como principal, en este caso es 'persona'
+                console.log(this.nombre + ' está hablando...')
+            },
+            caminar: function caminar() {
+                this.pasos++
+                console.log(this.nombre + ' está caminando...' + this.pasos + (this.pasos > 1 ? 'pasos' : 'paso'))
+            },
+            detener: function detener() {
+                console.log(this.nombre + ' está congelado')
+            }
+        }
+        persona.hablar()
+        persona.detener()
+        persona.caminar()
+        function mascota(nombre){
+            return {
+                comida: 0,
+                nombre: nombre,
+                comer: function (){
+                    this.comida = this.comida + 10
+                }
+            }
+        }
+        // dos formas de asignar el nombre pero lo mejor es enviar los parametros que se piden
+        var spanky = mascota('Spanky')
+        var terry = mascota()
+        terry.nombre = 'Terry'
+        console.log(spanky);
+        console.log(terry);
+        spanky.comer()
+        spanky.comer()
+        console.log(spanky.comida)
+        terry.comer()
+        console.log(terry.comida)
+    </script>
+</body>
+
+</html>

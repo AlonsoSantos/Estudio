@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var i = 0
+        // en un for para romper el ciclo se usa un break
+        // en un while se utiliza el continue para saltarse una ejecucion, si va de 1 a 3 y le pongo continue si es 2 se salta el 2 y continua con lo demas
+        for (i = 0; i < 5; i++) {
+            console.log('hola');
+        }
+        ///////////////////////////////////////////////////////
+        do{
+            console.log('hola');
+            i++
+        }while (i < 5)
+        ///////////////////////////////////////////////////////
+        while (i < 5){
+            console.log('hola');
+            i++
+        }
+        //////////////////////////////////////////////////////
+        var persona = {
+            nombre: 'alonso',
+            edad: 20
+        }
+        //////////////////////////////////////////////////////
+        for (var atributo in persona){
+            console.log(persona[atributo]);
+            // de estas 2 maneras se puede acceder al valor de la variable
+            persona.edad
+            persona['edad']
+        }
+</script>
+</body>
+</html>
