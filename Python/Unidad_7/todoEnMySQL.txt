@@ -1,0 +1,97 @@
+# CREACION Y ELIMINACION DE DB
+create database prueba; # crea la base de datos
+USE prueba; # activa la base de datos para usar
+drop database prueba; # elimina la base de datos
+create database prueba character set utf8 collate utf8_spanish_ci; # base de datos personalizada para que acepte caracteres del español
+
+# CREACION, MODIFICACION Y ELIMINACION DE TABLAS
+create database tiendita character set utf8 collate utf8_spanish_ci;
+use tiendita;
+create table productos(
+	idProducto int auto_increment primary key,
+    nombre varchar(50) not null,
+    precio decimal(10,2) not null,
+    fechaAlta date default '0000-00-00'
+);
+show tables; # muestra las tablas de la base de datos
+show columns from productos; # muestra los detalles de las columnas de una tabla
+show create table productos; # muestra el query de como se creo la tabla para poder hacer uso de eso como guia
+rename table productos to producto; # cambia el nombre de la tabla
+alter table producto add existencias int not null; # agrega una columna en la tabla
+show columns from producto;
+alter table producto drop column existencias; # elimina una columna en la tabla
+show columns from producto;
+alter table producto change precios precio decimal(18,2) not null; # cambia el nombre de una columna y puede cambiar tambien el tipo de datos que maneja
+show columns from producto;
+drop table producto;
+show tables;
+
+# RELACION ENTRE TABLAS
+CREATE TABLE categoria(
+	id int auto_increment primary key,
+    nombre varchar(50) not null
+);
+alter table productos add idCategoria int not null;
+alter table productos add constraint fk_CatPro foreign key (idCategoria) references categoria (id) on delete cascade on update cascade; # Establece la foranea, se usa cascade o restrict
+alter table productos drop foreign key fk_CarPro; # Elimina la foranea
+alter table productos drop column idCategorias;
+
+# INSERCION DE DATOS
+show columns from categoria;
+insert into categoria values (null, 'Bebidas'); # sin especificar que se ingresa toca ingresar todo
+select * from categoria;
+insert into categoria (nombre) values ('Aceites'); # se especifica las culmnas que se ingresaran
+select * from categoria;
+insert into categoria (nombre) values ('Detergentes'), ('Dulces'), ('Frituras'); # se pueden agregar varios registros en uno solo
+select * from categoria;
+insert into categoria set nombre='Categoria'; # otra forma de agregar un registro
+select * from categoria;
+insert into productos (nombre, precio, idCategoria) values ('Refresco',8.50,1);
+select * from productos;
+insert into productos (nombre,precio,fechaAlta,idCategoria) values ('Paleta',5,'2020-03-04',1);
+select * from productos;
+insert into productos (nombre,precio,fechaAlta,idCategoria) values ('Paleta',5,curdate(),1); # curdate es el mismo getdate
+select * from productos;
+
+# ACTUALIZACION DE DATOS
+update categoria set nombre='Modificado' where id=1;
+select * from categoria;
+update productos set nombre='Refrescos 1', precio=12.60 where idProducto=1;
+select * from productos;
+alter table productos add column existencia int not null;
+select * from productos;
+update productos set existencia=existencia+5 where idProducto=1;
+select * from productos;
+update productos set precio=replace(precio,5,6); # replace es reemplazar (nombre de la columna a reemplazar,dato que se reemplazara, dato por el que cambiara)
+select * from productos;
+update productos set nombre=replace(nombre,'leta','letita');
+select * from productos;
+
+# ELIMINACION DE DATOS
+select * from productos;
+delete from productos where idProducto=3;
+select * from productos;
+delete from categoria where id=1;
+select * from categoria;
+select * from productos;
+insert into productos values (null,'Refresco',10,curdate(),2,10);
+set foreign_key_checks=0; # esto quita la revision de relaciones para eliminar sin alertas
+truncate table productos; # borra los registros de una tabla haciendo que el id comience desde el registro #1
+set foreign_key_checks=1; # es mas recomendable dejarlo funcionando
+
+# CONSULTA DE DATOS
+Ingresar ese codigo para seguir
+D:\Estudio\Python\Unidad_7\tiendita.sql
+select * from categoria;
+select nombre from categoria;
+select nombre as Nombre,precio as Precio,existencia from productos where idCategoria = 3;
+select count(idProducto),idCategoria from productos group by idCategoria; # count(nombre de columna) cuenta cuantos hay
+select min(existencia) as ExistenciaMinima, max(existencia) as ExistenciaMaxima from productos;
+select * from productos limit 5; # el limit hace que se muestre esa cantidad de registros
+select * from productos limit 3,10; # el limit con 2 numeros dice desde que registro comenzar a mostrar y el segundo dice cuantos mostrar
+select * from productos order by nombre asc, existencia asc;
+
+# CONEXION DE BASE DE PYTHON CON MYSQL
+Instalar la libreria de mysql en python con el siguiente comando en la consola:
+pip install PyMySQL
+todo el ejercicio sigue en el archivo 'main.py'
